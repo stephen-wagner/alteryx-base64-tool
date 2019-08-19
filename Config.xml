@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AlteryxJavaScriptPlugin>
+  <Properties>
+    <MetaInfo>
+      <Name>Base64</Name>
+      <Description>The Base64 tool will encode binary data in the Base64, Base32, or Base16 format or decode such encodings back to binary data.</Description>
+      <ToolVersion>1</ToolVersion>
+      <CategoryName>Developer</CategoryName>
+      <Author>Stephen Wagner</Author>
+      <Icon>Icon.png</Icon>
+    </MetaInfo>
+  </Properties>
+</AlteryxJavaScriptPlugin>

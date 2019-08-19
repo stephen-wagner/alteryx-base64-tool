@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script>
+        window.ayx = window.ayx || {};
+        document.write(`<link
+        rel="import"
+        href="${window.Alteryx.LibDir}2/lib/includes.html"
+      />`);
+    </script>
+    <link rel="stylesheet" type="text/css" href="tool.css" />
+</head>
+
+<body>
+    
+    <label class="widgetLabel">Field to encode</label>
+    <ayx data-ui-props="{'type':'DropDown','widgetId':'EncodeField','placeholder':'Select a field...','option':{}}" data-item-props="{
+					  dataName: 'EncodeField',
+					  dataType: 'FieldSelector',
+					  anchorIndex:'0',
+					  connectionIndex:'0'
+					}">
+    </ayx>
+    </br>
+    <label class="widgetLabel">Method</label>
+    <ayx data-ui-props='{type:"ToggleBar", widgetId:"Method"}'></ayx>
+    <label class="widgetLabel">Encoding method</label>
+    <ayx data-ui-props='{type:"RadioGroup", widgetId:"EncodingMethod"}'></ayx>
+    <script type="text/javascript">
+        Alteryx.Gui.BeforeLoad = function(manager, AlteryxDataItems, json) {
+
+            const methodSelector = new AlteryxDataItems.StringSelector('Method', {
+                optionList: [
+                    {label: "Encode", value: "encode"}, 
+                    {label: "Decode", value: "decode"}
+                ]
+            })
+            manager.addDataItem(methodSelector)
+            manager.bindDataItemToWidget(methodSelector, 'Method') // Bind to widget
+            manager.getDataItem('Method').setValue('encode')
+
+            const encodingMethodSelector = new AlteryxDataItems.StringSelector('EncodingMethod', {
+                optionList: [{
+                    label: "Base64 - Standard",
+                    value: "b64_standard"
+                }, {
+                    label: "Base64 - URL Safe",
+                    value: "b64_url_safe"
+                }, {
+                    label: "Base32",
+                    value: "b32"
+                }, {
+                    label: "Base16",
+                    value: "b16"
+                }]
+            })
+            manager.addDataItem(encodingMethodSelector)
+            manager.bindDataItemToWidget(encodingMethodSelector, 'EncodingMethod') // Bind to widget
+            manager.getDataItem('EncodingMethod').setValue('b64_standard')
+
+        }
+
+        Alteryx.Gui.AfterLoad = function(manager) {}
+    </script>
+</body>
+
+</html>
